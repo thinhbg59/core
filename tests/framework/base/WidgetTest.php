@@ -51,7 +51,7 @@ class WidgetTest extends TestCase
      */
     public function testStackTracking()
     {
-        $this->expectException('yii\base\InvalidCallException');
+        $this->expectException('yii\exceptions\InvalidCallException');
         TestWidget::end();
     }
 
@@ -60,7 +60,7 @@ class WidgetTest extends TestCase
      */
     public function testStackTrackingDisorder()
     {
-        $this->expectException('yii\base\InvalidCallException');
+        $this->expectException('yii\exceptions\InvalidCallException');
         TestWidgetA::begin();
         TestWidgetB::begin();
         TestWidgetA::end();

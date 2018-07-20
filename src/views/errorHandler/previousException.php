@@ -1,5 +1,5 @@
 <?php
-/* @var $exception \yii\base\Exception */
+/* @var $exception \yii\exceptions\Exception */
 /* @var $handler \yii\web\ErrorHandler */
 ?>
 <div class="previous">

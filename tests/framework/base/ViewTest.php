@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yiiunit\framework\base;
+namespace yii\tests\framework\base;
 
 use yii\helpers\Yii;
 use yii\base\Theme;
@@ -14,7 +14,7 @@ use yii\caching\Cache;
 use yii\caching\FileCache;
 use yii\base\ViewEvent;
 use yii\helpers\FileHelper;
-use yiiunit\TestCase;
+use yii\tests\TestCase;
 
 /**
  * @group base
@@ -31,7 +31,7 @@ class ViewTest extends TestCase
         parent::setUp();
 
         $this->mockApplication();
-        $this->testViewPath = Yii::getAlias('@yiiunit/runtime') . DIRECTORY_SEPARATOR . str_replace('\\', '_', get_class($this)) . uniqid();
+        $this->testViewPath = Yii::getAlias('@yii/tests/runtime') . DIRECTORY_SEPARATOR . str_replace('\\', '_', get_class($this)) . uniqid();
         FileHelper::createDirectory($this->testViewPath);
     }
 
@@ -74,14 +74,14 @@ PHP
 
     public function testRenderDynamic()
     {
-        Yii::$app->set('cache', new Cache(['handler' => new FileCache(['cachePath' => '@yiiunit/runtime/cache'])]));
+        Yii::$app->set('cache', new Cache(['handler' => new FileCache(['cachePath' => '@yii/tests/runtime/cache'])]));
         $view = new View();
         $this->assertEquals(1, $view->renderDynamic('return 1;'));
     }
 
     public function testRenderDynamic_DynamicPlaceholders()
     {
-        Yii::$app->set('cache', new Cache(['handler' => new FileCache(['cachePath' => '@yiiunit/runtime/cache'])]));
+        Yii::$app->set('cache', new Cache(['handler' => new FileCache(['cachePath' => '@yii/tests/runtime/cache'])]));
         $statement = "return 1;";
         $view = new View();
         if ($view->beginCache(__FUNCTION__, ['duration' => 3])) {
@@ -95,7 +95,7 @@ PHP
 
     public function testRenderDynamic_StatementWithThisVariable()
     {
-        Yii::$app->set('cache', new FileCache(['cachePath' => '@yiiunit/runtime/cache']));
+        Yii::$app->set('cache', new FileCache(['cachePath' => '@yii/tests/runtime/cache']));
         $view = new View();
         $view->params['viewParam'] = 'dummy';
         $this->assertEquals($view->params['viewParam'], $view->renderDynamic('return $this->params["viewParam"];'));
@@ -103,7 +103,7 @@ PHP
 
     public function testRenderDynamic_IncludingParams()
     {
-        Yii::$app->set('cache', new FileCache(['cachePath' => '@yiiunit/runtime/cache']));
+        Yii::$app->set('cache', new FileCache(['cachePath' => '@yii/tests/runtime/cache']));
         $view = new View();
         $this->assertEquals('YiiFramework', $view->renderDynamic('return $a . $b;', [
             'a' => 'Yii',
@@ -115,7 +115,7 @@ PHP
 
     public function testRenderDynamic_IncludingParams_ThrowException()
     {
-        Yii::$app->set('cache', new FileCache(['cachePath' => '@yiiunit/runtime/cache']));
+        Yii::$app->set('cache', new FileCache(['cachePath' => '@yii/tests/runtime/cache']));
         $view = new View();
         try {
             $view->renderDynamic('return $a;');

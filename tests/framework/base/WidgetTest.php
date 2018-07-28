@@ -5,11 +5,11 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yiiunit\framework\base;
+namespace yii\tests\framework\base;
 
 use yii\base\Widget;
 use yii\base\WidgetEvent;
-use yiiunit\TestCase;
+use yii\tests\TestCase;
 
 /**
  * @group base
